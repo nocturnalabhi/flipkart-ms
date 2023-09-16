@@ -54,7 +54,7 @@ pipeline {
      steps {
           script {
                    withCredentials([string(credentialsId: 'dockerhubCred', variable: 'dockerhubCred')]) {
-                    sh "docker Login docker 10 -u abhiyadav2294 -p $(dockerhubCred}"
+                    sh "docker Login docker.io -u abhiyadav2294 -p $(dockerhubCred}"
                    echo "Push Docker Image to DockerHub: In Progress"
                     sh "docker push abhiyadav2294/flipkart-ms:dev-flipkart-v1.  ${BUILD_NUMBER}"
                     echo "Push Docker Image to DockerHub: Completed"
