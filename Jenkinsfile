@@ -31,7 +31,7 @@ pipeline {
         echo 'Creating War Artifact done'
       }
     }
-    stage("Building & Tag Docker Image') {
+    stage("Building & Tag Docker Image") {
         steps {
                 echo "Starting Building Docker Image'
                 sh "docker build -t abhiyadav2294/flipkart-ms:${BUILD_NUMBER},"
