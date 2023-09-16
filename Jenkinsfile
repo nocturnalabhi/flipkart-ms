@@ -40,7 +40,7 @@ pipeline {
              }
 
     }
-    stage("Docker Image Scanning') {
+    stage("Docker Image Scanning") {
 
     steps {
              echo 'Docker Image Scanning Started!
@@ -63,7 +63,7 @@ pipeline {
               }
        }
 
-       stage("Docker Image Push to Amazon ECR') {
+       stage("Docker Image Push to Amazon ECR") {
             steps {
                   script {
                            withDockerRegistry([credentialsId: 'ecr:us-east-2: ecr-credentials', url: "https://782531903514.dkr.ecr.us-east-2.amazonaws.com"]){
