@@ -74,6 +74,7 @@ pipeline {
                            echo "Push Docker Image to ECR: In Progress"
                            docker push 782531903514.dkr.ecr.us-east-2.amazonaws.com/flipkart-ms:${BUILD_NUMBER}
                            echo "Push Docker Image to ECR: Completed"
+                           """
                         }
                       }
                     }
