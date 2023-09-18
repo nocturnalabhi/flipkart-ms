@@ -62,18 +62,18 @@ pipeline {
               }
        }
 
-       stage("Docker Image Push to Amazon ECR") {
-            steps {
-                  script {
-                           withDockerRegistry([credentialsId: 'ecr:us-east-2: ecr-credentials', url: "https://782531903514.dkr.ecr.us-east-2.amazonaws.com"]){
-                            sh """
-                           echo "Tagging the Docker Image: In Progress"
-                           docker tag flipkart-ms:dev-flipkart-v1.${BUILD_NUMBER} 782531903514.dkr.ecr.us-east-2.amazonaws.com/flipkart-ms:${BUILD_NUMBER}
-                           echo "Tagging the Docker Image: Completed"
-                           echo "Push Docker Image to ECR: In Progress"
-                           docker push 782531903514.dkr.ecr.us-east-2.amazonaws.com/flipkart-ms:${BUILD_NUMBER}
-                           echo "Push Docker Image to ECR: Completed"
-                           """
+       stage('Docker Image Push to Amazon ECR') {
+                   steps {
+                       script {
+                           withDockerRegistry([credentialsId: 'ecr:us-east-2:ecr-credentials', url: "https://782531903514.dkr.ecr.us-east-2.amazonaws.com"]) {
+                               sh """
+                               echo "Tagging the Docker Image: In Progress"
+                               docker tag flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER} 782531903514.dkr.ecr.us-east-2.amazonaws.com/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER}
+                               echo "Tagging the Docker Image: Completed"
+                               echo "Push Docker Image to ECR: In Progress"
+                               docker push 782531903514.dkr.ecr.us-east-2.amazonaws.com/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER}
+                               echo "Push Docker Image to ECR: Completed"
+                               """
                         }
                       }
                     }
