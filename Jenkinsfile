@@ -34,7 +34,7 @@ pipeline {
     stage("Building & Tag Docker Image") {
         steps {
                 echo "Starting Building Docker Image"
-                sh "docker build -t abhiyadav2294/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER}."
+                sh "docker build -t abhiyadav2294/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER}.".
                 sh "docker build -t flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER}."
                 echo 'Completed Building Docker Image'
              }
