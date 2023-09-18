@@ -31,12 +31,12 @@ pipeline {
         echo 'Creating War Artifact done'
       }
     }
-    stage("Building & Tag Docker Image") {
-        steps {
-                echo "Starting Building Docker Image"
-                sh "docker build -t abhiyadav2294/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER}."
-                sh "docker build -t flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER}."
-                echo 'Completed Building Docker Image'
+      stage('Building & Tag Docker Image') {
+                 steps {
+                     echo 'Starting Building Docker Image'
+                     sh "docker build -t satyam88/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER} ."
+                     sh "docker build -t flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER} ."
+                     echo 'Completed Building Docker Image'
              }
 
     }
@@ -50,14 +50,13 @@ pipeline {
     }
 
      stage('Docker push to Docker Hub') {
-
-     steps {
-          script {
-                   withCredentials([string(credentialsId: 'dockerhubCred', variable: 'dockerhubCred')]) {
-                    sh "docker Login docker.io -u abhiyadav2294 -p ${dockerhubCred}"
-                   echo "Push Docker Image to DockerHub: In Progress"
-                    sh "docker push abhiyadav2294/flipkart-ms:dev-flipkart-v1.${BUILD_NUMBER}"
-                    echo "Push Docker Image to DockerHub: Completed"
+                 steps {
+                     script {
+                         withCredentials([string(credentialsId: 'dockerhubCred', variable: 'dockerhubCred')]) {
+                             sh "docker login docker.io -u satyam88 -p ${dockerhubCred}"
+                             echo "Push Docker Image to DockerHub: In Progress"
+                             sh "docker push satyam88/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER}"
+                             echo "Push Docker Image to DockerHub: Completed"
                   }
                 }
               }
